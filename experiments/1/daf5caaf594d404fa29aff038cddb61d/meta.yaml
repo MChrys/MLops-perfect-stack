@@ -1,0 +1,15 @@
+artifact_uri: ./experiments/1/daf5caaf594d404fa29aff038cddb61d/artifacts
+end_time: 1635479427017
+entry_point_name: ''
+experiment_id: '1'
+lifecycle_stage: active
+name: ''
+run_id: daf5caaf594d404fa29aff038cddb61d
+run_uuid: daf5caaf594d404fa29aff038cddb61d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1635479425838
+status: 3
+tags: []
+user_id: chrysostome

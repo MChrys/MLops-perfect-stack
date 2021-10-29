@@ -1,0 +1,4 @@
+artifact_location: 0.0.0.0:5000/1
+experiment_id: '1'
+lifecycle_stage: active
+name: gojob

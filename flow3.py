@@ -29,4 +29,4 @@ flow.run_config = LocalRun(env={"GREETING": "Hello"})
 flow.executor = LocalDaskExecutor()
 
 # Register the flow under the "tutorial" project
-flow.register(project_name="tutorial")
+flow.register(project_name="gojob")

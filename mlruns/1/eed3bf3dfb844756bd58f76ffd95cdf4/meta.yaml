@@ -1,0 +1,15 @@
+artifact_uri: ./mlruns/1/eed3bf3dfb844756bd58f76ffd95cdf4/artifacts
+end_time: 1635483533963
+entry_point_name: ''
+experiment_id: '1'
+lifecycle_stage: active
+name: ''
+run_id: eed3bf3dfb844756bd58f76ffd95cdf4
+run_uuid: eed3bf3dfb844756bd58f76ffd95cdf4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1635483531539
+status: 4
+tags: []
+user_id: chrysostome

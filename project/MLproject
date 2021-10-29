@@ -1,0 +1,14 @@
+name: gojob
+
+#conda_env: conda.yaml
+
+entry_points:
+  train:
+    command: "python main.py"
+  main:
+    parameters:
+      alpha: { type: float, default: 0.5 }
+      l1_ratio: { type: float, default: 0.1 }
+    command: "python train.py {alpha} {l1_ratio}"
+  data_process:
+    command: "python process_data.py "

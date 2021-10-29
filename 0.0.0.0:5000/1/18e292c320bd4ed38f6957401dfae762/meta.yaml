@@ -1,0 +1,15 @@
+artifact_uri: 0.0.0.0:5000/1/18e292c320bd4ed38f6957401dfae762/artifacts
+end_time: 1635479520655
+entry_point_name: ''
+experiment_id: '1'
+lifecycle_stage: active
+name: ''
+run_id: 18e292c320bd4ed38f6957401dfae762
+run_uuid: 18e292c320bd4ed38f6957401dfae762
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1635479519474
+status: 3
+tags: []
+user_id: chrysostome

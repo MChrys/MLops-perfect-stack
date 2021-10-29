@@ -1,0 +1,15 @@
+artifact_uri: localhost:5000/1/95ab16d336a945dfb7619dccfdc35ebd/artifacts
+end_time: 1635480892734
+entry_point_name: ''
+experiment_id: '1'
+lifecycle_stage: active
+name: ''
+run_id: 95ab16d336a945dfb7619dccfdc35ebd
+run_uuid: 95ab16d336a945dfb7619dccfdc35ebd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1635480890903
+status: 4
+tags: []
+user_id: chrysostome
