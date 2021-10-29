@@ -5,6 +5,7 @@ import prefect
 from prefect import task, Flow, Parameter
 
 from prefect import Client
+import subprocess
 
 
 @task
@@ -19,5 +20,9 @@ with Flow("parent-flow", run_config=LocalRun()) as flow:
     # Map `say_hello` across the list of names
     say_hello.map(people)
 
-flow.register(project_name="gojob")
+try:
+    flow.register(project_name="gojob")
+except:
+    subprocess.run(["prefect", "create", "project", "gojob"])
+    flow.register(project_name="gojob")
 # client.create_flow_run(flow_id="d7bfb996-b8fe-4055-8d43-2c9f82a1e3c7")

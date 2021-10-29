@@ -3,12 +3,19 @@ name: gojob
 #conda_env: conda.yaml
 
 entry_points:
-  train:
-    command: "python main.py"
   main:
+    command: "python main.py"
+  train:
     parameters:
       alpha: { type: float, default: 0.5 }
       l1_ratio: { type: float, default: 0.1 }
     command: "python train.py {alpha} {l1_ratio}"
-  data_process:
-    command: "python process_data.py "
+  process_data:
+    parameters:
+      path:
+        {
+          type: str,
+          default: "/home/chrysostome/Desktop/gojob/data/wine-quality.csv",
+        }
+      version: { type: str, default: "v2" }
+    command: "python process_data.py {path} {version}"

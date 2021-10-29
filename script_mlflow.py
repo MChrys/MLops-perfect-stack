@@ -1,6 +1,13 @@
 import mlflow
 from mlflow import projects
 import os
+from prefect import Flow
+from prefect.tasks.prefect import create_flow_run, wait_for_flow_run
+from prefect.run_configs import LocalRun
+import prefect
+from prefect import task, Flow, Parameter
+import subprocess
+from prefect import Client
 
 # os.environ["AWS_SECRET_ACCESS_KEY"] = "admin1598753"
 # os.environ["AWS_ACCESS_KEY_ID"] = "adminminio"
@@ -12,11 +19,35 @@ project_path = "./project"
 experiment = "gojob"
 traking = "http://localhost:5000"
 params = {}
-mlflow.set_tracking_uri(traking)
 
-mlflow.set_experiment(experiment)
+
+@task
+def set_uri(traking):
+    mlflow.set_tracking_uri(traking)
+    return traking
+
+
+@task
+def set_exp(experiment):
+    mlflow.set_experiment(experiment)
+    return experiment
+
+
+@task
+def run_mlflow(project_path, experiment):
+    mlflow.projects.run(
+        project_path,
+        experiment_name=experiment,
+    )
+
+
 print("experiment setted")
-mlflow.projects.run(
-    project_path,
-    experiment_name=experiment,
-)
+with Flow("gojobflow", run_config=LocalRun()) as flow:
+    s = set_uri(traking)
+    e = set_exp(experiment)
+    r = run_mlflow(project_path, e)
+try:
+    flow.register(project_name="gojob")
+except:
+    subprocess.run(["prefect", "create", "project", "gojob"])
+    flow.register(project_name="gojob")

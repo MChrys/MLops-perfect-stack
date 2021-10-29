@@ -20,5 +20,5 @@ services:
       POSTGRES_USER: 'admin'
       POSTGRES_PASSWORD: 'secret'
     ports: 
-      - "5432:5432"
+      - "3001:5432"
 
