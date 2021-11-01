@@ -1,0 +1,4 @@
+artifact_location: file:///home/chrysostome/Desktop/gojob/mlruns/1
+experiment_id: '1'
+lifecycle_stage: active
+name: gojob

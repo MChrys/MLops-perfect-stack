@@ -1,0 +1,9 @@
+defaults:
+  - var: env
+  - data: v1
+  - run: default
+flow_id: None
+last_model: None
+project_path: /home/chrysostome/Desktop/gojob/project/
+experiment: gojob
+repo: /home/chrysostome/Desktop/gojob/

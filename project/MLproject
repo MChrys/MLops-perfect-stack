@@ -1,6 +1,6 @@
 name: gojob
 
-#conda_env: conda.yaml
+conda_env: conda.yaml
 
 entry_points:
   main:
@@ -17,5 +17,7 @@ entry_points:
           type: str,
           default: "/home/chrysostome/Desktop/gojob/data/wine-quality.csv",
         }
-      version: { type: str, default: "v2" }
+      version: { type: str, default: "v3" }
     command: "python process_data.py {path} {version}"
+  env:
+    command: "python set_env.py"

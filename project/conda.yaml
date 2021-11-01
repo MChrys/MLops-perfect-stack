@@ -11,3 +11,4 @@ dependencies:
       - pandas>=1.0.0
       - scikit-learn
       - boto3
+      - hydra-core
