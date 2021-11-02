@@ -6,7 +6,7 @@ from omegaconf import DictConfig, OmegaConf
 
 
 @hydra.main(config_path="conf", config_name="config")
-def my_app(cfg) -> None:
+def my_app(cfg: DictConfig) -> None:
     # pork should be port!
     print(OmegaConf.to_yaml(cfg))
 
