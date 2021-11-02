@@ -2,7 +2,7 @@ git init
 dvc init
 git commit -m "Initialize DVC repo"
 dvc remote add -d dvc-storage /tmp/dvc-storage
-mkdir data
+@mkdir data
 
 https://github.com/mlflow/mlflow-example.git
 
@@ -13,6 +13,9 @@ git commit -m 'data: track'
 
 
 git tag -a 'v1' -m 'raw data'
+
+rm -rf data/wine-quality.csv
+rm -rf .dvc/cache
 
 sed -i '2,1001d' data/wine-quality.csv
 

@@ -13,6 +13,7 @@ from omegaconf import DictConfig, OmegaConf
 from dataclasses import dataclass
 from omegaconf import DictConfig, OmegaConf
 from hydra.core.config_store import ConfigStore
+import yaml
 
 # os.environ["AWS_SECRET_ACCESS_KEY"] = "admin1598753"
 # os.environ["AWS_ACCESS_KEY_ID"] = "adminminio"
@@ -64,11 +65,6 @@ class Run:
     flow_id: str = "None"
 
 
-cs = ConfigStore.instance()
-# Registering the Config class with the name 'config'.
-cs.store(group="run", name="default", node=Run)
-
-
 @hydra.main(config_path="project/conf", config_name="config")
 def workflow(cfg: DictConfig):
     with Flow("gojobflow", run_config=LocalRun()) as flow:
@@ -86,10 +82,15 @@ def workflow(cfg: DictConfig):
         subprocess.run(["prefect", "create", "project", "gojob"])
         idf = flow.register(project_name="gojob")
 
-    ri = Run(flow_id=idf)
+    # ri = Run(flow_id=idf)
     # Registering the Config class with the name 'config'.
-    cs.store(group="run", name="run_1", node=ri)
-    print(OmegaConf.to_yaml(cfg))
+    # cs.store(group="run", name="run_1", node=ri)
+    # print(OmegaConf.to_yaml(cfg))
+    run_1 = {"flow_id": idf}
+    with open(
+        "/home/chrysostome/Desktop/gojob/project/conf/run/run_1.yaml", "w"
+    ) as outfile:
+        yaml.dump(run_1, outfile, default_flow_style=False)
 
 
 if __name__ == "__main__":
