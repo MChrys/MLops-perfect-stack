@@ -1,7 +1,7 @@
 
 
-pip install -r requirements.txt
-
+pip install -r requirements.txt <br>
+. export.sh
 
 Ouvrir 4 terminaux :
 - dans le 1er on lance mlflow et minion : <br>
