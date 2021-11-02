@@ -25,12 +25,14 @@ from omegaconf import DictConfig, OmegaConf
 @hydra.main(config_path="conf", config_name="config")
 def task(cfg: DictConfig):
     params = {}
+    print(OmegaConf.to_yaml(cfg))
     project_path = cfg["project_path"]
     experiment = cfg["experiment"]
     mlflow.set_tracking_uri(cfg["var"]["MLFLOW_TRACKING_URI"])
     mlflow.set_experiment(experiment)
 
-    print(subprocess.run(["ls"]))
+    # print(subprocess.run(["ls"]))
+    print("workflow")
     with mlflow.start_run(nested=True):
         # set_env = mlflow.run(project_path, "env", experiment_name=experiment)
         get_data = mlflow.run(project_path, "process_data", experiment_name=experiment)
