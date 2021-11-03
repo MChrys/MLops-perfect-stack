@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-mlfow
-=======
 pyyaml
 mlflow
->>>>>>> hydra
 prefect
 hydra-core
 dvc[s3]
