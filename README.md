@@ -6,6 +6,7 @@ gojob/
   |___script_flow.py                        # script pour executer le workflow précedemment ajouté dans prefect
   |___interface.py                          # script pour ajouter les chemin du repo actuel dans la config hydra
   |___mltest.py                             # script pour run le workflow mlflow sans prefect
+  |___requirements.txt                      # fichier des dependencies  à installer en local
   |___wait-for-it.sh                        # script bash utilise dans le docker-compose, il permet d'attendre qu'une connexion TCP soit disposnible 
   |___project/
   |      |___conf/                          # répertoire qui contient la config hydra
