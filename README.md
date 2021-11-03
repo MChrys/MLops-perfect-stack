@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-
-
-pip install -r requirements.txt <br>
-. export.sh
-
-Ouvrir 4 terminaux :
-- dans le 1er on lance mlflow et minion : <br>
-  ``bash
-  docker-compose up
-  ``
-=======
 ``bash
 pip install -r requirements.txt
 ``
@@ -49,41 +37,17 @@ acceder à l'interface mlflow : http://localhost:5000 <br>
 acceder à l'interface mlflow : http://localhost:9000 ensuite se connecter avec id : minio et password : minio123 <br>
 on peut constater la présence de deux bucket respectivement pour dvc et mlflow
 <br><br>
->>>>>>> hydra
 - dans le second on démarre  le serveur prefect : <br>
   ``bash
   prefect server start
   ``
-<<<<<<< HEAD
-=======
 acceder à l'interface prefect : http://localhost:8080 <br><br>
->>>>>>> hydra
 - dans le troisième  on execute un agent prefect : <br>
   ``bash
   prefect agent local start
   ``
 - dans le dernier<br>
 On ajoute les deux version de la data avec DVC:<br>
-<<<<<<< HEAD
-  ``bash
-  . dvc.sh
-  ``
-ouvrir prefect :<br>
-``bash
-http://localhost:8080
-``
-on peut constater dans l'interface l'agent <br>
-
-ouvrir mlflow : <br>
-``bash
-http://localhost:5000
-``
-ouvrir minio : <br>
-``bash
-http://localhost:9000
-``
-
-=======
 d'abord on ajoute la version 1 du data
   ``bash
 dvc add data/wine-quality.csv 
@@ -137,31 +101,18 @@ Maintenant la comment `python mltest.py`
 devrait être "successful"
 
 dernière ligne droite :
->>>>>>> hydra
 
 Ensuite on enregistre le workflow dans prefect: <br>
   ``bash
   python script_mlfow.py
   ``
-<<<<<<< HEAD
-On peut constater le flow ajouté  dans l'interface prefect <br>
-
-enfin on lance l'execution du workflow: <br>
-  ``bash
-  python scipt_flow.py
-=======
 On peut constater le flow ajouté  dans l'interface prefect à l'onglet Flow du projet gojob <br>
 
 enfin on lance l'execution du workflow: <br>
   ``bash
   python scipt_flow.py run=run_1
->>>>>>> hydra
   ``
 on peut suivre son execution.<br>
 A la fin de son execution on peut constater l'expérimentation "gojob" les metriques obtenue. <br>
 
-<<<<<<< HEAD
 Et dans minio le model de l'experimentation   
-=======
-Et dans minio le model de l'experimentation   
->>>>>>> hydra
