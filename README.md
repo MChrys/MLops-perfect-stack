@@ -1,3 +1,20 @@
+
+
+```
+gojob/
+  |___script_mlflow.py          # script pour ajouter le workflow mlflow à prefect
+  |___script_flow.py            # script pour executer le workflow précedemment ajouté dans prefect
+  |___interface.py              # script pour ajouter les chemin du repo actuel dans la config hydra
+  |___project/
+         |___conf/              # répertoire qui contient la config hydra
+         |___conda.yaml         # le fichier qui permet l'env virtuel qui va executer le workflow
+         |___MLproject          # le fichier ou le workflow mlflow est spécifier
+         |___main.py            # le script du workflow
+         |___process_data.py    # step process_data qui lit la data en spécifiant la version dans DVC
+         |___train.py           # step qui entraine et enregistre le modèle à partir de la data  préparé 
+```
+<br>
+
 ```bash
 conda env -n gojob python3.7
 conda activate gojob
@@ -49,7 +66,7 @@ acceder à l'interface prefect : http://localhost:8080 <br><br>
   prefect agent local start
   ```
 - dans le dernier<br>
-On ajoute les deux version de la data avec DVC:<br>
+On ajoute les deux versions de la data avec DVC:<br>
 d'abord on ajoute la version 1 du data
   ```bash
     dvc add data/wine-quality.csv 
@@ -60,14 +77,14 @@ d'abord on ajoute la version 1 du data
 
     git tag -a 'v1' -m 'raw data'
   ```
-On test ensuite que l'on peut bien pull les data du bucket dans minio : <br>
+On test ensuite que l'on peut bien pull les datas du bucket depuis minio : <br>
 ```bash
 rm -rf data/wine-quality.csv
 rm -rf .dvc/cache
 dvc pull
 
 ```
-On ajoute une version 2 :
+On ajoute une version 2  en supprimant 1000 lignes:
 ```bash
 sed -i '2,1001d' data/wine-quality.csv
 
