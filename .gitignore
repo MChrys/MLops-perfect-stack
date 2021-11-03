@@ -3,6 +3,6 @@
 /outputs/
 /.dvc
 /__pycache__
-docker-compose.yaml
+docker-compose.yaml.
 /project/outputs/*
 /project/mlruns/*
