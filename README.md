@@ -11,7 +11,7 @@ gojob/
          |___MLproject          # le fichier ou le workflow mlflow est spécifier
          |___main.py            # le script du workflow
          |___process_data.py    # step process_data qui lit la data en spécifiant la version dans DVC
-         |___train.py           # step qui entraine et enregistre le modèle à partir de la data  préparé 
+         |___train.py           # step train  qui entraine et enregistre le modèle à partir de la data  préparé 
 ```
 <br>
 
