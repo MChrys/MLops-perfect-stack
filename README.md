@@ -50,13 +50,13 @@ acceder à l'interface prefect : http://localhost:8080 <br><br>
 On ajoute les deux version de la data avec DVC:<br>
 d'abord on ajoute la version 1 du data
   ```bash
-dvc add data/wine-quality.csv 
-git add data/wine-quality.csv.dvc data/.gitignore
+    dvc add data/wine-quality.csv 
+    git add data/wine-quality.csv.dvc data/.gitignore
 
-git commit -m 'data: track'
+    git commit -m 'data: track'
 
 
-git tag -a 'v1' -m 'raw data'
+    git tag -a 'v1' -m 'raw data'
   ```
 On test ensuite que l'on peut bien pull les data du bucket dans minio : <br>
 ```bash
