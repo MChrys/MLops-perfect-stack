@@ -16,9 +16,9 @@ gojob/
   |      |      |     |___v2.yaml           #
   |      |      |___run/
   |      |      |     |___run_1.yaml        # conf hydra relative à la run ID du flow prefect
-  |      |      |___dvc
+  |      |      |___dvc/
   |      |      |     |___conf1.yaml        # conf hydra relative au repo de dvc vers minio
-  |      |      |___var
+  |      |      |___var/
   |      |            |___env.yaml          # conf hydra relative aux variables d'environnement 
   |      |
   |      |___conda.yaml                     # le fichier qui permet l'env virtuel qui va executer le workflow
