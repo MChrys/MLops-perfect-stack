@@ -96,11 +96,11 @@ Maintenant on regarde le nom de l'environnement créer : <br>
 
 ensuite on active l'env et on install minio manuellement <br>
 
-    ```
+    
     conda activate {envname}
     pip install minio
     conda deactivate
-    ```
+    
 
 Maintenant la comment `python mltest.py`
 devrait être "successful" <br><br>
