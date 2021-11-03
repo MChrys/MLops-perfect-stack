@@ -103,9 +103,9 @@ ensuite on set les chemins respectifs du répertoire actuel dans le répertoire 
 <br>
 Maintenant on va run le project mlflow et s'attendre à une erreur : <br>
 
-    ```bash
+    
         python mltest.py
-    ```
+    
 
 cette étape est nécessaire car l'installation de l'environnement virtuel pour executer le workflow rentre dans une boucle infinie quand on spécifie `minio` dans le project/conda.yaml du projet <br>
 Maintenant on regarde le nom de l'environnement créer : <br>
