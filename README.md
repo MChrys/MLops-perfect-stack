@@ -5,6 +5,7 @@ gojob/
   |___script_mlflow.py          # script pour ajouter le workflow mlflow à prefect
   |___script_flow.py            # script pour executer le workflow précedemment ajouté dans prefect
   |___interface.py              # script pour ajouter les chemin du repo actuel dans la config hydra
+  |___mltest.py                 # script pour run le workflow mlflow sans prefect
   |___project/
          |___conf/              # répertoire qui contient la config hydra
          |___conda.yaml         # le fichier qui permet l'env virtuel qui va executer le workflow
