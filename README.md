@@ -1,4 +1,6 @@
 ```bash
+conda env -n gojob python3.7
+conda activate gojob
 pip install -r requirements.txt
 ```
 Déclarer les variable env <br>
