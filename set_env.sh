@@ -26,6 +26,15 @@ dvc remote modify minio access_key_id $AWS_ACCESS_KEY_ID
 dvc remote modify minio secret_access_key $AWS_SECRET_ACCESS_KEY
 #https://github.com/mlflow/mlflow-example.git
 
+#1 open one terminal
+#prefect server start
+
+#2 open an other terminal
+# prefect agent local start
+
+#3 open an other terminal 
+#docker-compose up
+
 dvc add data/wine-quality.csv 
 git add data/wine-quality.csv.dvc data/.gitignore
 
@@ -34,9 +43,14 @@ git commit -m 'data: track'
 
 git tag -a 'v1' -m 'raw data'
 
+
+# on supprime la data et on la recupère via la DB minion avec le pull
 rm -rf data/wine-quality.csv
 rm -rf .dvc/cache
+dvc pull
 
+
+#on modifie la data et on push la version 2
 sed -i '2,1001d' data/wine-quality.csv
 
 git add data/wine-quality.csv.dvc

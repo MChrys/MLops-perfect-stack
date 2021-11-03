@@ -1,10 +1,9 @@
 defaults:
-  - var: env
-  - data: v1
-  - run: default
-  - dvc: conf1
-
-last_model: None
-project_path: /home/chrysostome/Desktop/gojob/project/
+- var: env
+- data: v1
+- run: default
 experiment: gojob
-repo: /home/chrysostome/Desktop/gojob/
+flow_id: None
+last_model: None
+project_path: /home/chrysostome/Desktop/test_gojob/gojob/project
+repo: /home/chrysostome/Desktop/test_gojob/gojob

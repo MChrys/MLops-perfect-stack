@@ -41,10 +41,7 @@ def task(cfg: DictConfig):
             path=cfg["data"]["path"], repo=cfg["repo"], rev=version
         )
         print(data_url)
-        obj = client.get_object(
-            "dvc",
-            data_url.split("//")[1][4:],
-        )
+        obj = client.get_object("dvc", data_url.split("//")[1][4:],)
         print("-------->")
         print(data_url)
         # Read the wine-quality csv file (make sure you're running this from the root of MLflow!)
@@ -68,33 +65,37 @@ def task(cfg: DictConfig):
         # log artifacts: columns used for modeling
         print("--------------")
         print(os.getcwd())
-        print(cfg["project_path"] + "tmp/features.csv")
+        print(cfg["project_path"] + "/tmp/features.csv")
         print("-----------")
         cols_x = pd.DataFrame(list(train_x.columns))
         cols_x.to_csv(
-            cfg["project_path"] + "tmp/features.csv", header=False, index=False
+            cfg["project_path"] + "/tmp/features.csv", header=False, index=False
         )
-        mlflow.log_artifact(cfg["project_path"] + "tmp/features.csv")
+        mlflow.log_artifact(cfg["project_path"] + "/tmp/features.csv")
 
         cols_y = pd.DataFrame(list(train_y.columns))
         cols_y.to_csv(
-            cfg["project_path"] + "tmp/targets.csv", header=False, index=False
+            cfg["project_path"] + "/tmp/targets.csv", header=False, index=False
         )
-        mlflow.log_artifact(cfg["project_path"] + "tmp/targets.csv")
+        mlflow.log_artifact(cfg["project_path"] + "/tmp/targets.csv")
 
         train_y.to_csv(
-            cfg["project_path"] + "tmp/train_y.csv", header=False, index=False
+            cfg["project_path"] + "/tmp/train_y.csv", header=False, index=False
         )
-        mlflow.log_artifact(cfg["project_path"] + "tmp/train_y.csv")
-        test_y.to_csv(cfg["project_path"] + "tmp/test_y.csv", header=False, index=False)
-        mlflow.log_artifact(cfg["project_path"] + "tmp/test_y.csv")
+        mlflow.log_artifact(cfg["project_path"] + "/tmp/train_y.csv")
+        test_y.to_csv(
+            cfg["project_path"] + "/tmp/test_y.csv", header=False, index=False
+        )
+        mlflow.log_artifact(cfg["project_path"] + "/tmp/test_y.csv")
 
         train_x.to_csv(
-            cfg["project_path"] + "tmp/train_x.csv", header=False, index=False
+            cfg["project_path"] + "/tmp/train_x.csv", header=False, index=False
         )
-        mlflow.log_artifact(cfg["project_path"] + "tmp/train_x.csv")
-        test_x.to_csv(cfg["project_path"] + "tmp/test_x.csv", header=False, index=False)
-        mlflow.log_artifact(cfg["project_path"] + "tmp/test_x.csv")
+        mlflow.log_artifact(cfg["project_path"] + "/tmp/train_x.csv")
+        test_x.to_csv(
+            cfg["project_path"] + "/tmp/test_x.csv", header=False, index=False
+        )
+        mlflow.log_artifact(cfg["project_path"] + "/tmp/test_x.csv")
 
 
 if __name__ == "__main__":

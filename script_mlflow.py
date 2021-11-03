@@ -52,8 +52,7 @@ def set_exp(experiment):
 @task
 def run_mlflow(project_path, experiment):
     mlflow.projects.run(
-        project_path,
-        experiment_name=experiment,
+        project_path, experiment_name=experiment,
     )
 
 
@@ -79,18 +78,22 @@ def workflow(cfg: DictConfig):
         r = run_mlflow(project_path, e)
     try:
         idf = flow.register(project_name="gojob", set_schedule_active=False)
+        run_1 = {"flow_id": idf}
+        logger.info(cfg["project_path"] + "/conf/run/run_1.yaml")
+        with open(cfg["project_path"] + "/conf/run/run_1.yaml", "w+") as outfile:
+            yaml.dump(run_1, outfile, default_flow_style=False)
     except:
         subprocess.run(["prefect", "create", "project", "gojob"])
         idf = flow.register(project_name="gojob", set_schedule_active=False)
+        run_1 = {"flow_id": idf}
+        logger.info(cfg["project_path"] + "/conf/run/run_1.yaml")
+        with open(cfg["project_path"] + "/conf/run/run_1.yaml", "w+") as outfile:
+            yaml.dump(run_1, outfile, default_flow_style=False)
 
     # ri = Run(flow_id=idf)
     # Registering the Config class with the name 'config'.
     # cs.store(group="run", name="run_1", node=ri)
     # print(OmegaConf.to_yaml(cfg))
-    run_1 = {"flow_id": idf}
-    logger.info(cfg["project_path"] + "conf/run/run_1.yaml")
-    with open(cfg["project_path"] + "conf/run/run_1.yaml", "w") as outfile:
-        yaml.dump(run_1, outfile, default_flow_style=False)
 
 
 if __name__ == "__main__":
