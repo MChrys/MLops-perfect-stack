@@ -77,26 +77,28 @@ dvc push
 ```
 
 ensuite on set les chemins respectifs du répertoire actuel dans le répertoire  project/conf ou on a toutes les configurations : <br>
-```bash
-python interface.py
-```
+    ```bash
+        python interface.py
+    ```
 
 <br>
 Maintenant on va run le project mlflow et s'attendre à une erreur : <br>
-```bash
-python mltest.py
-```
+    ```bash
+        python mltest.py
+    ```
+
 cette étape est nécessaire car l'installation de l'environnement virtuel pour executer le workflow rentre dans une boucle infinie quand on spécifie `minio` dans le project/conda.yaml du projet <br>
 Maintenant on regarde le nom de l'environnement créer : <br>
-```bash
-conda env list
-```
+    ```bash
+        conda env list
+    ```
+
 ensuite on active l'env et on install minio manuellement <br>
-```bash
-conda activate {envname}
-pip install minio
-conda deactivate
-```
+    ```bash
+        conda activate {envname}
+        pip install minio
+        conda deactivate
+    ```
 Maintenant la comment `python mltest.py`
 devrait être "successful"
 
@@ -104,13 +106,13 @@ dernière ligne droite :
 
 Ensuite on enregistre le workflow dans prefect: <br>
   ```bash
-  python script_mlfow.py
+    python script_mlfow.py
   ```
 On peut constater le flow ajouté  dans l'interface prefect à l'onglet Flow du projet gojob <br>
 
 enfin on lance l'execution du workflow: <br>
   ```bash
-  python scipt_flow.py run=run_1
+    python scipt_flow.py run=run_1
   ```
 on peut suivre son execution.<br>
 A la fin de son execution on peut constater l'expérimentation "gojob" les metriques obtenue. <br>
