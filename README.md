@@ -90,9 +90,9 @@ Maintenant on va run le project mlflow et s'attendre à une erreur : <br>
 cette étape est nécessaire car l'installation de l'environnement virtuel pour executer le workflow rentre dans une boucle infinie quand on spécifie `minio` dans le project/conda.yaml du projet <br>
 Maintenant on regarde le nom de l'environnement créer : <br>
 
-    ```
+    
         conda env list
-    ```
+    
 
 ensuite on active l'env et on install minio manuellement <br>
 
