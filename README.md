@@ -2,18 +2,33 @@
 
 ```
 gojob/
-  |___script_mlflow.py          # script pour ajouter le workflow mlflow à prefect
-  |___script_flow.py            # script pour executer le workflow précedemment ajouté dans prefect
-  |___interface.py              # script pour ajouter les chemin du repo actuel dans la config hydra
-  |___mltest.py                 # script pour run le workflow mlflow sans prefect
-  |___wait-for-it.sh            # script bash utilise dans le docker-compose, il permet d'attendre qu'une connexion TCP soit disposnible 
+  |___script_mlflow.py                      # script pour ajouter le workflow mlflow à prefect
+  |___script_flow.py                        # script pour executer le workflow précedemment ajouté dans prefect
+  |___interface.py                          # script pour ajouter les chemin du repo actuel dans la config hydra
+  |___mltest.py                             # script pour run le workflow mlflow sans prefect
+  |___wait-for-it.sh                        # script bash utilise dans le docker-compose, il permet d'attendre qu'une connexion TCP soit disposnible 
   |___project/
-         |___conf/              # répertoire qui contient la config hydra
-         |___conda.yaml         # le fichier qui permet l'env virtuel qui va executer le workflow
-         |___MLproject          # le fichier ou le workflow mlflow est spécifier
-         |___main.py            # le script du workflow
-         |___process_data.py    # step process_data qui lit la data en spécifiant la version dans DVC
-         |___train.py           # step train  qui entraine et enregistre le modèle à partir de la data  préparé 
+  |      |___conf/                          # répertoire qui contient la config hydra
+  |      |      |___ config.yaml            # conf hydra principal
+  |      |      |___data/
+  |      |      |     |___v1.yaml           # conf hydra pour la version  DVC de la data
+  |      |      |     |___v2.yaml           #
+  |      |      |___run/
+  |      |      |     |___run_1.yaml        # conf hydra relative à la run ID du flow prefect
+  |      |      |___dvc
+  |      |      |     |___conf1.yaml        # conf hydra relative au repo de dvc vers minio
+  |      |      |___var
+  |      |            |___env.yaml          # conf hydra relative aux variables d'environnement 
+  |      |
+  |      |___conda.yaml                     # le fichier qui permet l'env virtuel qui va executer le workflow
+  |      |___MLproject                      # le fichier ou le workflow mlflow est spécifier
+  |      |___main.py                        # le script du workflow
+  |      |___process_data.py                # step process_data qui lit la data en spécifiant la version dans DVC
+  |      |___train.py                       # step train  qui entraine et enregistre le modèle à partir de la data  préparé 
+  |___data/                                 # répertoire de la data versioné dans DVC puis entrainé par la suite  
+  |      |___ ...
+  |___powerpoint_presentation/              # dossier relatif aux firchier pptx de présentation
+  |      |___ ...
 ```
 <br>
 
@@ -124,7 +139,7 @@ ensuite on active l'env et on install minio manuellement <br>
     conda deactivate
     
 
-Maintenant la comment `python mltest.py`
+Maintenant la command `python mltest.py`
 devrait être "successful" <br><br>
 
 dernière ligne droite :<br>
