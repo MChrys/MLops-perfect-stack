@@ -65,7 +65,7 @@ dvc remote modify minio access_key_id $AWS_ACCESS_KEY_ID
 dvc remote modify minio secret_access_key $AWS_SECRET_ACCESS_KEY
 ```
 
-Ouvrir 4 terminaux :
+Ouvrir 3 terminaux de plus :
 - dans le 1er on lance mlflow et minio : <br>
   ```bash
   docker-compose up
@@ -83,7 +83,7 @@ acceder à l'interface prefect : http://localhost:8080 <br><br>
   ```bash
   prefect agent local start
   ```
-- dans le dernier<br>
+- retour au terminal initial<br>
 On ajoute les deux versions de la data avec DVC:<br>
 d'abord on ajoute la version 1 du data
   ```bash
