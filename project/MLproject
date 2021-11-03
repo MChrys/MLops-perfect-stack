@@ -11,11 +11,4 @@ entry_points:
       l1_ratio: { type: float, default: 0.1 }
     command: "python train.py {alpha} {l1_ratio}"
   process_data:
-    parameters:
-      path:
-        {
-          type: str,
-          default: "/home/chrysostome/Desktop/gojob/data/wine-quality.csv",
-        }
-      version: { type: str, default: "v2" }
-    command: "python process_data.py {path} {version}"
+    command: "python process_data.py "
