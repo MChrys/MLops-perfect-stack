@@ -21,21 +21,31 @@ import click
 
 import hydra
 from omegaconf import DictConfig, OmegaConf
+from minio import Minio
 
 
 @hydra.main(config_path="conf", config_name="config")
 def task(cfg: DictConfig):
     with mlflow.start_run() as mlrun:
+
+        client = Minio(
+            "localhost:9000",
+            access_key=cfg["var"]["AWS_ACCESS_KEY_ID"],
+            secret_key=cfg["var"]["AWS_SECRET_ACCESS_KEY"],
+            secure=False,
+        )
         version = cfg["data"]["version"]
         np.random.seed(40)
         # repo = os.getcwd() + "/"
         data_url = dvc.api.get_url(
             path=cfg["data"]["path"], repo=cfg["repo"], rev=version
         )
+        print(data_url)
+        obj = client.get_object("dvc", data_url.split("//")[1][4:],)
         print("-------->")
         print(data_url)
         # Read the wine-quality csv file (make sure you're running this from the root of MLflow!)
-        data = pd.read_csv(data_url)
+        data = pd.read_csv(obj)
 
         # log data params
         mlflow.log_param("data_url", data_url)
@@ -53,23 +63,39 @@ def task(cfg: DictConfig):
         test_y = test[["quality"]]
 
         # log artifacts: columns used for modeling
+        print("--------------")
+        print(os.getcwd())
+        print(cfg["project_path"] + "/tmp/features.csv")
+        print("-----------")
         cols_x = pd.DataFrame(list(train_x.columns))
-        cols_x.to_csv("tmp/features.csv", header=False, index=False)
-        mlflow.log_artifact("tmp/features.csv")
+        cols_x.to_csv(
+            cfg["project_path"] + "/tmp/features.csv", header=False, index=False
+        )
+        mlflow.log_artifact(cfg["project_path"] + "/tmp/features.csv")
 
         cols_y = pd.DataFrame(list(train_y.columns))
-        cols_y.to_csv("tmp/targets.csv", header=False, index=False)
-        mlflow.log_artifact("tmp/targets.csv")
+        cols_y.to_csv(
+            cfg["project_path"] + "/tmp/targets.csv", header=False, index=False
+        )
+        mlflow.log_artifact(cfg["project_path"] + "/tmp/targets.csv")
 
-        train_y.to_csv("tmp/train_y.csv", header=False, index=False)
-        mlflow.log_artifact("tmp/train_y.csv")
-        test_y.to_csv("tmp/test_y.csv", header=False, index=False)
-        mlflow.log_artifact("tmp/test_y.csv")
+        train_y.to_csv(
+            cfg["project_path"] + "/tmp/train_y.csv", header=False, index=False
+        )
+        mlflow.log_artifact(cfg["project_path"] + "/tmp/train_y.csv")
+        test_y.to_csv(
+            cfg["project_path"] + "/tmp/test_y.csv", header=False, index=False
+        )
+        mlflow.log_artifact(cfg["project_path"] + "/tmp/test_y.csv")
 
-        train_x.to_csv("tmp/train_x.csv", header=False, index=False)
-        mlflow.log_artifact("tmp/train_x.csv")
-        test_x.to_csv("tmp/test_x.csv", header=False, index=False)
-        mlflow.log_artifact("tmp/test_x.csv")
+        train_x.to_csv(
+            cfg["project_path"] + "/tmp/train_x.csv", header=False, index=False
+        )
+        mlflow.log_artifact(cfg["project_path"] + "/tmp/train_x.csv")
+        test_x.to_csv(
+            cfg["project_path"] + "/tmp/test_x.csv", header=False, index=False
+        )
+        mlflow.log_artifact(cfg["project_path"] + "/tmp/test_x.csv")
 
 
 if __name__ == "__main__":

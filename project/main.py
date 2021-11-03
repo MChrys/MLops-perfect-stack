@@ -20,23 +20,52 @@ import subprocess
 # os.environ["MLFLOW_S3_ENDPOINT_URL"] = "http://localhost:9000"
 import hydra
 from omegaconf import DictConfig, OmegaConf
+import os
+
+import uuid
+
+# @hydra.main(config_path="conf", config_name="config")
+from hydra import compose, initialize
+from omegaconf import OmegaConf
 
 
-@hydra.main(config_path="conf", config_name="config")
-def task(cfg: DictConfig):
-    params = {}
-    project_path = cfg["project_path"]
-    experiment = cfg["experiment"]
-    mlflow.set_tracking_uri(cfg["var"]["MLFLOW_TRACKING_URI"])
-    mlflow.set_experiment(experiment)
-
-    print(subprocess.run(["ls"]))
-    with mlflow.start_run(nested=True):
-        # set_env = mlflow.run(project_path, "env", experiment_name=experiment)
-        get_data = mlflow.run(project_path, "process_data", experiment_name=experiment)
-
-        train = mlflow.run(project_path, "train", experiment_name=experiment)
+# print(os.environ)
+# print(subprocess.run(["ls"]))
+import os
+import warnings
+import sys
+from funcy.colls import project
+import mlflow
+import subprocess
 
 
-if __name__ == "__main__":
-    task()
+def set_env(cfg: DictConfig) -> None:
+    """
+    set all env var
+    """
+    env = cfg["var"]
+    for k, v in env.items():
+        os.environ[k] = v
+
+
+initialize(config_path="conf", job_name="gojob")
+cfg = compose(config_name="config")
+print(OmegaConf.to_yaml(cfg))
+traking = cfg["var"]["MLFLOW_TRACKING_URI"]
+params = {}
+project_path = cfg["project_path"]
+experiment = cfg["experiment"]
+mlflow.set_tracking_uri(traking)
+mlflow.set_experiment(experiment)
+
+# print(subprocess.run(["ls"]))
+with mlflow.start_run(nested=True):
+
+    set_env(cfg)
+
+    get_data = mlflow.run(project_path, "process_data", experiment_name=experiment)
+
+    train = mlflow.run(project_path, "train", experiment_name=experiment)
+
+# if __name__ == "__main__":
+#    task()

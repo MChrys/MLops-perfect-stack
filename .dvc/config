@@ -1,4 +1,7 @@
 [core]
-    remote = dvc-storage
-['remote "dvc-storage"']
-    url = /tmp/dvc-storage
+    remote = minio
+['remote "minio"']
+    url = s3://dvc
+    endpointurl = http://localhost:9000
+    access_key_id = minio
+    secret_access_key = minio123
