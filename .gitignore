@@ -1,0 +1,8 @@
+/mlflow
+/mlruns
+/outputs
+/.dvc
+/__pycache__
+docker-compose.yaml
+/project/outputs
+/project/mlruns

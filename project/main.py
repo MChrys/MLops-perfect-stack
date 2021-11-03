@@ -24,6 +24,20 @@ import os
 
 import uuid
 
+# @hydra.main(config_path="conf", config_name="config")
+from hydra import compose, initialize
+from omegaconf import OmegaConf
+
+
+# print(os.environ)
+# print(subprocess.run(["ls"]))
+import os
+import warnings
+import sys
+from funcy.colls import project
+import mlflow
+import subprocess
+
 
 def set_env(cfg: DictConfig) -> None:
     """
@@ -33,65 +47,25 @@ def set_env(cfg: DictConfig) -> None:
     for k, v in env.items():
         os.environ[k] = v
 
-<<<<<<< Updated upstream
 
-# @hydra.main(config_path="conf", config_name="config")
-from hydra import compose, initialize
-from omegaconf import OmegaConf
-
-traking = "http://localhost:5000"
+initialize(config_path="conf", job_name="gojob")
+cfg = compose(config_name="config")
+print(OmegaConf.to_yaml(cfg))
+traking = cfg["var"]["MLFLOW_TRACKING_URI"]
 params = {}
-project_path = "."
-experiment = "gojob"
+project_path = cfg["project_path"]
+experiment = cfg["experiment"]
 mlflow.set_tracking_uri(traking)
 mlflow.set_experiment(experiment)
 
-print(subprocess.run(["ls"]))
-with mlflow.start_run(nested=True):
-
-    get_data = mlflow.run(project_path, "process_data", experiment_name=experiment)
-
-    train = mlflow.run(project_path, "train", experiment_name=experiment)
-=======
-
-# @hydra.main(config_path="conf", config_name="config")
-from hydra import compose, initialize
-from omegaconf import OmegaConf
-
-initialize(config_path="conf", job_name="test_app")
-cfg = compose(config_name="config")
-print(OmegaConf.to_yaml(cfg))
-params = {}
-
-# print(os.environ)
 # print(subprocess.run(["ls"]))
-run_id = str(uuid.uuid4())
-print("workflow")
-print(run_id)
-
-# os.environ["MLFLOW_TRACKING_URI"] = "http://localhost:5000"
 with mlflow.start_run(nested=True):
-    project_path = cfg["project_path"]
-    experiment = cfg["experiment"]
-    mlflow.set_experiment(experiment)
-    os.environ["MLFLOW_TRACKING_URI"] = "http://localhost:5000"
-    mlflow.set_tracking_uri(cfg["var"]["MLFLOW_TRACKING_URI"])
 
-    print(cfg["var"]["MLFLOW_TRACKING_URI"])
-
-    # set_env = mlflow.run(project_path, "env", experiment_name=experiment)
     set_env(cfg)
-    # print(os.environ)
-    get_data = mlflow.run(project_path, "process_data", experiment_name=experiment)
-    print("=================>")
-    print("get_data success")
-    train = mlflow.run(project_path, "train", experiment_name=experiment)
-    print("=================>")
-    print("train success")
-    print(OmegaConf.to_yaml(DictConfig(dict(os.environ))))
-    mlflow.end_run()
->>>>>>> Stashed changes
 
+    get_data = mlflow.run(project_path, "process_data", experiment_name=experiment)
+
+    train = mlflow.run(project_path, "train", experiment_name=experiment)
 
 # if __name__ == "__main__":
 #    task()

@@ -68,6 +68,7 @@ class Run:
 @hydra.main(config_path="project/conf", config_name="config")
 def workflow(cfg: DictConfig):
     with Flow("gojobflow", run_config=LocalRun()) as flow:
+        logger = prefect.context.get("logger")
         experiment = cfg["experiment"]
         tracking = cfg["var"]["MLFLOW_TRACKING_URI"]
         project_path = cfg["project_path"]
@@ -77,19 +78,18 @@ def workflow(cfg: DictConfig):
         e = set_exp(experiment)
         r = run_mlflow(project_path, e)
     try:
-        idf = flow.register(project_name="gojob")
+        idf = flow.register(project_name="gojob", set_schedule_active=False)
     except:
         subprocess.run(["prefect", "create", "project", "gojob"])
-        idf = flow.register(project_name="gojob")
+        idf = flow.register(project_name="gojob", set_schedule_active=False)
 
     # ri = Run(flow_id=idf)
     # Registering the Config class with the name 'config'.
     # cs.store(group="run", name="run_1", node=ri)
     # print(OmegaConf.to_yaml(cfg))
     run_1 = {"flow_id": idf}
-    with open(
-        "/home/chrysostome/Desktop/gojob/project/conf/run/run_1.yaml", "w"
-    ) as outfile:
+    logger.info(cfg["project_path"] + "conf/run/run_1.yaml")
+    with open(cfg["project_path"] + "conf/run/run_1.yaml", "w") as outfile:
         yaml.dump(run_1, outfile, default_flow_style=False)
 
 
