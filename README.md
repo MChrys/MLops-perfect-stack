@@ -99,10 +99,11 @@ ensuite on active l'env et on install minio manuellement <br>
         pip install minio
         conda deactivate
     ```
-Maintenant la comment `python mltest.py`
-devrait être "successful"
 
-dernière ligne droite :
+Maintenant la comment `python mltest.py`
+devrait être "successful" <br><br>
+
+dernière ligne droite :<br>
 
 Ensuite on enregistre le workflow dans prefect: <br>
   ```bash
