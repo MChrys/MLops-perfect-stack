@@ -118,6 +118,6 @@ enfin on lance l'execution du workflow: <br>
     python scipt_flow.py run=run_1
   ```
 on peut suivre son execution.<br>
-A la fin de son execution on peut constater l'expérimentation "gojob" les metriques obtenue. <br>
+A la fin de son execution on peut constater l'expérimentation `gojob` les metriques obtenue dans l'interface mlfow sur l'onglet de l'experiment `gojob`. <br>
 
 Et dans minio le model de l'experimentation   
