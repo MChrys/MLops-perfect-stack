@@ -115,7 +115,8 @@ acceder à l'interface prefect : http://localhost:8080 <br><br>
   ```bash
   prefect agent local start
   ```
-<h3> retour au terminal initial<\h3><br>
+<h3> retour au terminal initial</h3> 
+ <br>
 
 
 ensuite on set les chemins respectifs du répertoire actuel dans le répertoire  project/conf ou on a toutes les configurations : <br>
