@@ -134,7 +134,7 @@ ensuite on set les chemins respectifs du répertoire actuel dans le répertoire 
    
 
 <br>
-Maintenant on va run le project mlflow et s'attendre à une erreur : <br>
+Maintenant on va run le project mlflow en local : <br>
 
     
         python mltest.py
