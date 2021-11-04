@@ -94,6 +94,7 @@ d'abord on ajoute la version 1 du data
 
 
     git tag -a 'v1' -m 'raw data'
+    dvc push
   ```
 On test ensuite que l'on peut bien pull les datas du bucket depuis minio : <br>
 ```bash
@@ -105,7 +106,7 @@ dvc pull
 On ajoute une version 2  en supprimant 1000 lignes:
 ```bash
 sed -i '2,1001d' data/wine-quality.csv
-
+dvc add data/wine-quality.csv
 git add data/wine-quality.csv.dvc
 
 git commit -m 'data : remove 1000 lines'
@@ -114,9 +115,9 @@ dvc push
 ```
 
 ensuite on set les chemins respectifs du répertoire actuel dans le répertoire  project/conf ou on a toutes les configurations : <br>
-    ```bash
+    
         python interface.py
-    ```
+   
 
 <br>
 Maintenant on va run le project mlflow et s'attendre à une erreur : <br>
