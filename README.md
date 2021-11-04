@@ -94,8 +94,9 @@ git tag -a 'v2'  -m 'removed 1000 lines'
 dvc push
 ```
 <br>
-Ouvrir 3 terminaux de plus :
+Ouvrir 3 terminaux de plus : <br>
 - dans le 1er on lance mlflow et minio : <br>
+
   ```bash
   docker-compose up
   ```
@@ -104,11 +105,13 @@ acceder à l'interface mlflow : http://localhost:9000 ensuite se connecter avec 
 on peut constater la présence de deux bucket respectivement pour dvc et mlflow
 <br><br>
 - dans le second on démarre  le serveur prefect : <br>
+
   ```bash
   prefect server start
   ```
 acceder à l'interface prefect : http://localhost:8080 <br><br>
 - dans le troisième  on execute un agent prefect : <br>
+
   ```bash
   prefect agent local start
   ```
