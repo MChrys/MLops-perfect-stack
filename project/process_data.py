@@ -70,6 +70,10 @@ def task(cfg: DictConfig):
         print(os.getcwd())
         print(cfg["project_path"] + "/tmp/features.csv")
         print("-----------")
+        try:
+            os.mkdir(cfg["project_path"] + "/tmp")
+        except:
+            pass
         cols_x = pd.DataFrame(list(train_x.columns))
         cols_x.to_csv(
             cfg["project_path"] + "/tmp/features.csv", header=False, index=False

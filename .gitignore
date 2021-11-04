@@ -1,7 +1,7 @@
 /mlflow/*
 /mlruns/*
 /outputs/
-/.dvc
+#/.dvc
 /__pycache__
 docker-compose.yaml.
 /project/outputs/*
