@@ -110,7 +110,7 @@ Ouvrir 3 terminaux de plus : <br>
   ```
 acceder à l'interface mlflow : http://localhost:5000 <br>
 acceder à l'interface mlflow : http://localhost:9000 ensuite se connecter avec id : minio et password : minio123 <br>
-![run](/gif_readme/flow_run.gif)
+![run](/gif_readme/minio.gif)
 on peut constater la présence de deux bucket respectivement pour dvc et mlflow
 <br><br>
 - dans le second on démarre  le serveur prefect : <br>
