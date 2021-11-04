@@ -175,4 +175,6 @@ A la fin de son execution on peut constater l'expérimentation `gojob` les metri
  
 ![run](/gif_readme/flow_run.gif)
 
-Enfin dans mlflow on peut acceder à l'experimentation et le calcul de ses metrics 
+Enfin dans mlflow on peut acceder à l'experimentation et le calcul de ses metrics <br>
+
+![run](/gif_readme/mlflowlast.gif)
