@@ -92,7 +92,8 @@ git add data/wine-quality.csv.dvc
 git commit -m 'data : remove 1000 lines'
 git tag -a 'v2'  -m 'removed 1000 lines'
 dvc push
-```<br>
+```
+<br>
 Ouvrir 3 terminaux de plus :
 - dans le 1er on lance mlflow et minio : <br>
   ```bash
