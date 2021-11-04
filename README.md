@@ -34,7 +34,7 @@ gojob/
 <br>
 
 ```bash
-conda create env -n gojob python3.7
+conda create -n gojob python3.7
 conda activate gojob
 pip install -r requirements.txt
 ```
