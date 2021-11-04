@@ -5,6 +5,7 @@ dependencies:
   - python=3.7
   - pip
   - pip:
+      - minio
       - mlflow
       - dvc[s3]
       - numpy>=1.14.3
