@@ -157,5 +157,6 @@ enfin on lance l'execution du workflow: <br>
   ```
 on peut suivre son execution.<br>
 A la fin de son execution on peut constater l'expérimentation `gojob` les metriques obtenue dans l'interface mlfow sur l'onglet de l'experiment `gojob`. <br>
-
+ 
+![run](/gif_readme/flow_run.gif)
 Et dans minio le model de l'experimentation   
