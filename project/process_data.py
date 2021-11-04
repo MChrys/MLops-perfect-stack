@@ -11,7 +11,7 @@ import mlflow.sklearn
 import os
 import dvc.api
 import click
-
+import dvc
 
 # mlflow.set_experiment("gojob")
 
@@ -41,7 +41,10 @@ def task(cfg: DictConfig):
             path=cfg["data"]["path"], repo=cfg["repo"], rev=version
         )
         print(data_url)
-        obj = client.get_object("dvc", data_url.split("//")[1][4:],)
+        obj = client.get_object(
+            "dvc",
+            data_url.split("//")[1][4:],
+        )
         print("-------->")
         print(data_url)
         # Read the wine-quality csv file (make sure you're running this from the root of MLflow!)

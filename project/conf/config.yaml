@@ -5,5 +5,5 @@ defaults:
 experiment: gojob
 flow_id: None
 last_model: None
-project_path: /home/chrysostome/Desktop/test_gojob/gojob/project
-repo: /home/chrysostome/Desktop/test_gojob/gojob
+project_path: /home/chrysostome/Desktop/test2/gojob/project
+repo: /home/chrysostome/Desktop/test2/gojob

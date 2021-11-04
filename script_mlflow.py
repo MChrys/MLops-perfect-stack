@@ -49,8 +49,9 @@ def set_exp(experiment):
     return experiment
 
 
-@task
+@task(log_stdout=True)
 def run_mlflow(project_path, experiment):
+    print('mlflowrun')
     mlflow.projects.run(
         project_path, experiment_name=experiment,
     )
