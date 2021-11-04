@@ -38,6 +38,14 @@ conda create -n gojob python3.7
 conda activate gojob
 pip install -r requirements.txt
 ```
+<br>
+On supprime les parametres DVC
+
+```bash
+. rmdvc.sh
+```
+<br>
+
 Déclarer les variable env <br>
 ```bash
 export MLFLOW_TRACKING_URI=http://localhost:5000
@@ -64,26 +72,6 @@ dvc remote modify minio endpointurl $MLFLOW_S3_ENDPOINT_URL
 dvc remote modify minio access_key_id $AWS_ACCESS_KEY_ID
 dvc remote modify minio secret_access_key $AWS_SECRET_ACCESS_KEY
 ```
-
-Ouvrir 3 terminaux de plus :
-- dans le 1er on lance mlflow et minio : <br>
-  ```bash
-  docker-compose up
-  ```
-acceder à l'interface mlflow : http://localhost:5000 <br>
-acceder à l'interface mlflow : http://localhost:9000 ensuite se connecter avec id : minio et password : minio123 <br>
-on peut constater la présence de deux bucket respectivement pour dvc et mlflow
-<br><br>
-- dans le second on démarre  le serveur prefect : <br>
-  ```bash
-  prefect server start
-  ```
-acceder à l'interface prefect : http://localhost:8080 <br><br>
-- dans le troisième  on execute un agent prefect : <br>
-  ```bash
-  prefect agent local start
-  ```
-- retour au terminal initial<br>
 On ajoute les deux versions de la data avec DVC:<br>
 d'abord on ajoute la version 1 du data
   ```bash
@@ -94,6 +82,7 @@ d'abord on ajoute la version 1 du data
 
 
     git tag -a 'v1' -m 'raw data'
+    dvc push
   ```
 On test ensuite que l'on peut bien pull les datas du bucket depuis minio : <br>
 ```bash
@@ -105,18 +94,43 @@ dvc pull
 On ajoute une version 2  en supprimant 1000 lignes:
 ```bash
 sed -i '2,1001d' data/wine-quality.csv
-
+dvc add data/wine-quality.csv
 git add data/wine-quality.csv.dvc
 
 git commit -m 'data : remove 1000 lines'
 git tag -a 'v2'  -m 'removed 1000 lines'
 dvc push
 ```
+<br>
+Ouvrir 3 terminaux de plus : <br>
+- dans le 1er on lance mlflow et minio : <br>
+
+  ```bash
+  docker-compose up
+  ```
+acceder à l'interface mlflow : http://localhost:5000 <br>
+acceder à l'interface mlflow : http://localhost:9000 ensuite se connecter avec id : minio et password : minio123 <br>
+on peut constater la présence de deux bucket respectivement pour dvc et mlflow
+<br><br>
+- dans le second on démarre  le serveur prefect : <br>
+
+  ```bash
+  prefect server start
+  ```
+acceder à l'interface prefect : http://localhost:8080 <br><br>
+- dans le troisième  on execute un agent prefect : <br>
+
+  ```bash
+  prefect agent local start
+  ```
+<h3> retour au terminal initial</h3> 
+ <br>
+
 
 ensuite on set les chemins respectifs du répertoire actuel dans le répertoire  project/conf ou on a toutes les configurations : <br>
-    ```bash
+    
         python interface.py
-    ```
+   
 
 <br>
 Maintenant on va run le project mlflow et s'attendre à une erreur : <br>
