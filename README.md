@@ -38,6 +38,14 @@ conda create -n gojob python3.7
 conda activate gojob
 pip install -r requirements.txt
 ```
+<br>
+On supprime les parametres DVC
+
+```bash
+. rmdvc.sh
+```
+<br>
+
 Déclarer les variable env <br>
 ```bash
 export MLFLOW_TRACKING_URI=http://localhost:5000
